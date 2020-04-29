@@ -79,21 +79,25 @@ const getByWinner = () => {
             let b1 = lista[n1][0].className;
             let b2 = lista[n2][0].className;
             let b3 = lista[n3][0].className;
-           
-            
             if(b1 == "x" && b2 == "x" && b3 == "x"){
                 console.log("x venceu diagonal");
             }else if(b1 == "o" && b2 == "o" && b3 == "o"){
                 console.log("o venceu diagonal");
         }
-        }else {
-            let counter;
-            for (let i = 0; i < lista.length; i++){
-                if(lista[i][0] != undefined){
-                    counter++;
-                }
+        }
+
+        let counter = 0;
+        for (let i = 0; i < boxes.length; i++){
+            if(boxes[i].childNodes[0] != undefined){
+                boxes[i].childNodes[0];
+                counter++;
             }
         }
+        
+        if (counter == 9){
+            console.log("deu velha");
+        }
+        
 
         temp += 3
     }
