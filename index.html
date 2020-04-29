@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href= "css/style.css">
+</head>
+<body>
+    <h1> Jogo da Velha </h1>
+    <div id = "buttons-container">
+        <button id = "2-jogadores">2 playes</button>
+        <button id = "1-jogador">Computador</button>
+    </div>
+    <div id = "container" class="hide">
+        <div class="box"  id = "block-1"></div>
+        <div class="box"  id = "block-2"></div>
+        <div class="box"  id = "block-3"></div>
+        <div class="box"  id = "block-4"></div>
+        <div class="box"  id = "block-5"></div>
+        <div class="box"  id = "block-6"></div>
+        <div class="box"  id = "block-7"></div>
+        <div class="box"  id = "block-8"></div>
+        <div class="box"  id = "block-9"></div>
+        
+        <div id = "placar-container">
+            <h2>Placar</h2>
+            <span class="score-box">
+                <span id="placar-x">X</span>:
+                <span id="valor-x">0</span>
+            </span>
+            <span class="score-box">
+                <span id="placar-o"></span>:
+                <span id="valor-o">0</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="hide">
+        <div class="x">X</div>
+        <div class="o"></div>
+    </div>
+    <div id = "mensagem" class="hide">
+        <p id = "texto-msg">Mensagem</p>
+    </div>
+
+</body>
+<script src = "js/script.js"></script>
+</html>
