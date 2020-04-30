@@ -87,13 +87,11 @@ h1 {
 }
 
 
-/* classe esconder 
 
 .hide {
     display: none !important;
 
 }
-*/
 
 #placar-container {
     font-weight: bold;
@@ -132,9 +130,8 @@ h2 {
 
 /*msg de vencedor*/
 
-#texto-msg {
-    display: none !important;
-    position: absolute;
+#txt {
+    position: fixed;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -145,8 +142,8 @@ h2 {
     background-color: black;
     color: white;
     padding: 20px;
-    margin-right: -130%;
     opacity: 0.8;
+    margin-right: -130%;
     margin-top: 50%;
     transform: translate(-50%, -50%)
 }
