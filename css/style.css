@@ -3,7 +3,7 @@ body {
     font-family: Helvetiv, sans-serif;
     background: rgb(226, 226, 226);
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%) 
@@ -16,6 +16,7 @@ h1 {
 /* botões*/
 #buttons-container button {
     border: none;
+    position: relative;
     padding: 15px 20px;
     background-color: rgb(218, 0, 0);
     color: white;
@@ -27,8 +28,31 @@ h1 {
 }
 
 #buttons-container button:hover {
-    filter: brightness(90%);
+    filter: brightness(80%);
 }
+
+#container-voltar button{
+    text-align: center;
+    border: none;
+    position: absolute;
+    padding: 15px 100px;
+    background-color:  rgb(51, 51, 51);;
+    color: white;
+    top: 415px;
+    left: 15px;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+    border-radius: 10px;
+    transition: filter 0.4s;
+    margin: 0 10px;
+    
+}
+
+#container-voltar button:hover{
+    filter: brightness(130%);
+
+}
+
 
 /*jogo*/
 
@@ -97,7 +121,9 @@ h1 {
     font-weight: bold;
     margin-top: 30px;
     font-size: 25px;
-    position: relative;
+    position: absolute;
+    top: 323px;
+    left: 50px;
     margin-left: auto;
     margin-right: auto;
 }

@@ -1,7 +1,7 @@
 let x = document.querySelector(".x");
 let o = document.querySelector(".o");
 let boxes = document.querySelectorAll(".box");
-let buttons = document.querySelectorAll("#buttons-container");
+let buttons = document.querySelectorAll("#buttons-container button");
 let messageContainer = document.querySelector("#mensagem");
 let messageText = document.querySelector("#txt");
 let placarX = document.getElementById("valor-x");
@@ -9,13 +9,36 @@ let placarO = document.getElementById("valor-o");
 let secondPlayer;
 
 
-console.log( Number(placarX.childNodes[0].nodeValue ));
 // contador de jogadas
 let player1 = 0;
 let player2 = 0;
 
+
+const mainPlayer = (action) => {
+    for(let i = 0; i < buttons.length; i ++){
+        buttons[i].addEventListener("click", () => {
+            secondPlayer = buttons[i].getAttribute("id");
+            setTimeout(() =>{
+            
+            for(let j = 0;i < buttons.length; j++){
+                buttons[j].style.display = "none";
+            }
+            }, 100);
+
+            setTimeout(() => {
+                let container = document.querySelector("#container");
+                let btnVolta = document.querySelector("#container-voltar");
+                btnVolta.classList.remove("hide");
+                container.classList.remove("hide");
+            }, 1000);
+
+        });
+    }
+}
+
 // adicionandi o evento de click ao boxes
-function twoPlayers() {
+function main() {
+    mainPlayer(2);
     for(let box = 0 ; box < boxes.length;  box++){
         let elemento;
         
@@ -24,6 +47,11 @@ function twoPlayers() {
                 if (player1 == player2){
                     elemento = x;
                     player1++;
+                    
+                    if(secondPlayer == "1-jogador"){
+                        player2 ++;
+                        fuctionIA();
+                    }
                 }else{
                     elemento = o;
                     player2 ++;
@@ -31,7 +59,8 @@ function twoPlayers() {
         
                 let cloneEl = elemento.cloneNode(true);
                 boxes[box].appendChild(cloneEl);
-                getByWinner();
+                getByWinner2Players();
+            
             }
             
             
@@ -40,7 +69,27 @@ function twoPlayers() {
 }
 
 
-const getByWinner = () => {
+const fuctionIA = () => {
+    setTimeout(()=> {
+        while (true){
+            let generateNumber = Math.floor(Math.random() * 9);
+            let campo = boxes[generateNumber].childNodes.length == 0;
+            if (campo){
+                console.log(campo);
+                let cloneEl = o.cloneNode(true);
+                boxes[generateNumber].appendChild(cloneEl);
+                getByWinner2Players();
+                break;
+            }
+        }
+        
+    }, 600);
+    
+    
+    
+} 
+
+const getByWinner2Players = () => {
     let lista = [];
     for (let i = 0; i < boxes.length ; i++){
         lista.push(boxes[i].childNodes);
@@ -54,11 +103,10 @@ const getByWinner = () => {
             let b3 = lista[temp + 2][0].className;
             
             if(b1 == "x" && b2 == "x" && b3 == "x"){
-                console.log("x venceu horizontal");
                 reloadScore("x");
                 break;
             }else if(b1 == "o" && b2 == "o" && b3 == "o"){
-                console.log("o venceu horizontal");
+            
                 reloadScore("o");
                 break;
             }
@@ -68,11 +116,9 @@ const getByWinner = () => {
             let b3 = lista[hori + 6][0].className;
             
             if(b1 == "x" && b2 == "x" && b3 == "x"){
-                console.log("x venceu vertical");
                 reloadScore("x");
                 break;
             }else if(b1 == "o" && b2 == "o" && b3 == "o"){
-                console.log("o venceu vertical");
                 reloadScore("o");
                 break;
         }
@@ -84,11 +130,9 @@ const getByWinner = () => {
                 let b2 = lista[n2][0].className;
                 let b3 = lista[n3][0].className;
                 if(b1 == "x" && b2 == "x" && b3 == "x"){
-                    console.log("x venceu diagonal");
                     reloadScore("x");
                     break;
                 }else if(b1 == "o" && b2 == "o" && b3 == "o"){
-                    console.log("o venceu diagonal");
                     reloadScore("o");
                     break;
             }
@@ -99,11 +143,9 @@ const getByWinner = () => {
                 let b2 = lista[n2][0].className;
                 let b3 = lista[n3][0].className;
                 if(b1 == "x" && b2 == "x" && b3 == "x"){
-                    console.log("x venceu diagonal");
                     reloadScore("x");
                     break;
                 }else if(b1 == "o" && b2 == "o" && b3 == "o"){
-                    console.log("o venceu diagonal");
                     reloadScore("o");
                     break;
             }
@@ -122,14 +164,10 @@ const getByWinner = () => {
             reloadScore("@");
             break;
         }
-    
-    
-        
-
         temp += 3
     }
-    
 }
+
 
 // Carrega placar
 const reloadScore = (type) => {
@@ -143,25 +181,25 @@ const reloadScore = (type) => {
     }else{
         msg = "Deu velha";
     }
-    console.log(msg);
+    
     messageText.innerHTML = msg;
     messageContainer.classList.remove("hide");
     
     setTimeout(() => {
         messageContainer.classList.add("hide");
-    }, 1000);
+    }, 2000);
 
      player1 = 0;
      player2 = 0;
-
-    let boxesRemove = document.querySelectorAll(".box div");
-    for(let i = 0; i < boxesRemove.length; i++){
-        console.log(i);
-        boxesRemove[i].parentNode.removeChild(boxesRemove[i]);
-    }
-    
-
+    setTimeout(() => {
+        let boxesRemove = document.querySelectorAll(".box div");
+        for(let i = 0; i < boxesRemove.length; i++){
+            boxesRemove[i].parentNode.removeChild(boxesRemove[i]);
+    }}, 500);
 }
 
-twoPlayers();
 
+
+
+main();
+console.log();
